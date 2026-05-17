@@ -1,92 +1,74 @@
 # 🎰 Casino Slot Machine Game
 
-## 🎮 Game Overview
-
-This project is a fully playable casino-style slot machine game developed in Unity.
-
-The game features:
-- Smooth animated spinning reels
-- Randomized slot outcomes using RNG
-- Betting and payout system
-- Coin management system
-- Win detection logic
-- Audio and UI feedback
-- Animated slot machine handle
-- Retry/Game Over system
-- Main menu with casino-themed presentation
-
-The objective is to match all 3 symbols on the middle row to win rewards.
+A fully playable casino-style slot machine game developed in Unity featuring animated reels, betting mechanics, dynamic payouts, audio feedback, UI polish, retry systems, and a complete gameplay loop.
 
 ---
 
-# ▶️ Instructions to Run WebGL Build
+# 🎮 Game Overview
 
-1. Open the repository.
-2. Navigate to:
+This project was created as a game development assignment focused on building a polished and interactive slot machine experience.
 
-`Builds/WebGL`
+The game includes:
 
-3. Open `index.html` using:
-- a local web server
-- GitHub Pages
-- itch.io
-- or a browser supporting local WebGL builds
+* Smooth reel animations
+* RNG-based randomized outcomes
+* Betting and payout system
+* Win detection logic
+* Coin management system
+* Animated UI feedback
+* Main menu and retry/game over systems
+* Audio effects and gameplay polish
 
-Recommended browsers:
-- Chrome
-- Edge
-
----
-
-# ✨ Bonus Features
-
-Additional features implemented beyond the core requirements:
-
-- Adjustable betting system
-- Dynamic payout scaling
-- Animated slot machine handle
-- Reel spin sound effects
-- Win sound and animation
-- Smooth retry panel popup animation
-- Main menu system
-- Video-based menu background
-- Organized project structure
-- Polished UI feedback
+The player wins when all 3 center-row symbols match.
 
 ---
 
-# 💡 Thought Process / Approach
+# ✨ Features
 
-The project was developed incrementally by first building the core reel system and then polishing the gameplay experience step-by-step.
+## Core Gameplay
 
-Main development priorities:
-1. Stable reel logic
-2. Smooth spinning animation
-3. Accurate win detection
-4. Clean symbol alignment
-5. Responsive UI and audio feedback
-6. Modular and organized code structure
+* 3 Reel Slot Machine
+* Middle-row win detection
+* Dynamic payout system
+* Multiple symbol types
+* Randomized outcomes using RNG
 
-Object-oriented programming principles were used to separate:
-- gameplay logic
-- reel behavior
-- UI management
-- menu systems
+## Betting System
 
-Special attention was given to:
-- gameplay feel
-- readability
-- project organization
-- user experience polish
+* Adjustable betting values
+* Higher bets generate higher rewards
+* Real-time bet display
+
+## UI & Polish
+
+* Smooth reel animations
+* Animated slot machine handle
+* Win popup animation
+* Retry/Game Over panel
+* Casino-themed main menu
+* Interactive UI feedback
+
+## Audio
+
+* Background music
+* Reel spinning sound effects
+* Win sound effects
+
+## Additional Features
+
+* Retry system when coins reach zero
+* ESC key quit functionality
+* Organized project structure
+* WebGL Build support
 
 ---
 
 # 🛠️ Tech Stack
 
-- Unity 6
-- C#
-- TextMeshPro
-- Unity Animator System
+* Unity 6
+* C#
+* TextMeshPro
+* Unity Animator System
 
 ---
 
@@ -108,6 +90,83 @@ Assets/
 
 ---
 
+# ▶️ Instructions To Run WebGL Build
+
+1. Open the repository.
+2. Navigate to:
+
+```text
+Builds/WebGL
+```
+
+3. Run the WebGL build using:
+
+* GitHub Pages
+* itch.io
+* local web server
+* Unity Build And Run
+
+Recommended browsers:
+
+* Chrome
+* Edge
+
+---
+
+# 💡 Thought Process / Approach
+
+The project was built incrementally by first creating the core reel and RNG systems, followed by gameplay polish and UI improvements.
+
+Development priorities:
+
+1. Stable reel behavior
+2. Accurate win detection
+3. Smooth animations
+4. Clean symbol alignment
+5. Responsive UI and audio
+6. Modular and maintainable code
+
+Object-oriented programming principles were used to separate gameplay logic, reel systems, UI systems, and menu management into independent scripts.
+
+---
+
 # 🎨 Assets
 
-All gameplay systems, UI setup, animations, and overall game implementation were created and assembled manually for this assignment project.
+I initially missed the asset pack link provided in the assignment, so I created and assembled the visual assets and UI presentation independently while preserving all required gameplay functionality from the reference.
+
+The main gameplay systems and features remain fully implemented, with the primary difference being the visual presentation and styling.
+
+Additional customizations include:
+
+* 5 slot symbols
+* Retry panel
+* Animated win text
+* Main menu screen
+* Betting system
+* Audio and UI polish
+
+---
+
+# 📸 Screenshots
+
+## Main Menu
+
+![Main Menu](Screenshot%202026-05-18%20021830.png)
+
+---
+
+## Gameplay
+
+![Gameplay](Screenshot%202026-05-18%20021625.png)
+
+---
+
+## Retry / Game Over Panel
+
+![Retry Panel](Screenshot%202026-05-18%20021813.png)
+
+---
+
+# 👨‍💻 Developer
+
+Developed by Aakarshan Sharma as a Unity game development assignment project.
