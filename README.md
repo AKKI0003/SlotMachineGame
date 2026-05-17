@@ -24,7 +24,7 @@ The objective is to match all 3 symbols on the middle row to win rewards.
 1. Open the repository.
 2. Navigate to:
 
-Builds/WebGL
+`Builds/WebGL`
 
 3. Open `index.html` using:
 - a local web server
@@ -92,17 +92,19 @@ Special attention was given to:
 
 # 📁 Project Structure
 
+```text
 Assets/
- ├── Animations/
- ├── Art/
- ├── Audio/
- ├── Prefabs/
- ├── Scenes/
- ├── Scripts/
- │    ├── Core/
- │    ├── Reels/
- │    └── UI/
- └── UI/
+├── Animations/
+├── Art/
+├── Audio/
+├── Prefabs/
+├── Scenes/
+├── Scripts/
+│   ├── Core/
+│   ├── Reels/
+│   └── UI/
+└── UI/
+```
 
 ---
 
