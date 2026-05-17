@@ -8,13 +8,19 @@ public class GameManager : MonoBehaviour
 
     [Header("Coin Settings")]
     public int startingCoins = 1000;
-    public int spinCost = 50;
 
-    // Current player coin balance
+    [Header("Bet Settings")]
+    public int currentBet = 50;
+    public int minBet = 50;
+    public int maxBet = 500;
+    public int betStep = 50;
+
+    // Current player balance
     private int currentCoins;
 
     [Header("UI References")]
     public TextMeshProUGUI coinsText;
+    public TextMeshProUGUI betText;
 
     void Awake()
     {
@@ -31,27 +37,34 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Initialize player coins
+        // Initialize coins
         currentCoins = startingCoins;
 
         UpdateCoinsUI();
+        UpdateBetUI();
     }
 
-    // Checks if player has enough coins to spin
+    // Check if player has enough coins
     public bool CanSpin()
     {
-        return currentCoins >= spinCost;
+        return currentCoins >= currentBet;
     }
 
-    // Deducts spin cost from player coins
+    // Check if player is completely out of coins
+    public bool IsOutOfCoins()
+    {
+        return currentCoins <= 0;
+    }
+
+    // Deduct current bet
     public void SpendCoins()
     {
-        currentCoins -= spinCost;
+        currentCoins -= currentBet;
 
         UpdateCoinsUI();
     }
 
-    // Adds reward coins to player balance
+    // Add reward coins
     public void AddCoins(int amount)
     {
         currentCoins += amount;
@@ -59,12 +72,47 @@ public class GameManager : MonoBehaviour
         UpdateCoinsUI();
     }
 
-    // Updates coin display text
+    // Increase bet amount
+    public void IncreaseBet()
+    {
+        currentBet += betStep;
+
+        if (currentBet > maxBet)
+        {
+            currentBet = maxBet;
+        }
+
+        UpdateBetUI();
+    }
+
+    // Decrease bet amount
+    public void DecreaseBet()
+    {
+        currentBet -= betStep;
+
+        if (currentBet < minBet)
+        {
+            currentBet = minBet;
+        }
+
+        UpdateBetUI();
+    }
+
+    // Update coin display
     void UpdateCoinsUI()
     {
         if (coinsText != null)
         {
             coinsText.text = currentCoins.ToString();
+        }
+    }
+
+    // Update bet display
+    void UpdateBetUI()
+    {
+        if (betText != null)
+        {
+            betText.text = "BET: " + currentBet;
         }
     }
 }

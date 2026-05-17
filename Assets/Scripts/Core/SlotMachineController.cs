@@ -7,85 +7,83 @@ public class SlotMachineController : MonoBehaviour
     [Header("Reel References")]
     public ReelController[] reels;
 
-    [Header("UI Elements")]
+    [Header("UI")]
     public TextMeshProUGUI winText;
 
     [Header("Animations")]
     public Animator winAnimator;
+    public Animator handleAnimator;
 
-    [Header("Audio Sources")]
+    [Header("Audio")]
     public AudioSource reelAudioSource;
     public AudioSource winAudioSource;
 
-    // Prevents multiple spins at the same time
+    // Prevents multiple spins
     private bool isSpinning = false;
-
-
-    /// Starts the slot machine spin sequence.
 
     public void Spin()
     {
-        // Prevent player from spinning while reels are active
+        // Prevent multiple spins
         if (isSpinning)
             return;
 
-        // Check if player has enough coins
+        // Check if player can afford spin
         if (!GameManager.Instance.CanSpin())
             return;
 
-        // Deduct spin cost
+        // Deduct current bet
         GameManager.Instance.SpendCoins();
 
-        // Begin spinning reels
+        // Play handle animation
+        if (handleAnimator != null)
+        {
+            handleAnimator.SetTrigger("Spin");
+        }
+
         StartCoroutine(SpinRoutine());
     }
-
-
-    /// Handles reel spinning sequence and timing.
 
     IEnumerator SpinRoutine()
     {
         isSpinning = true;
 
-        // Clear previous win message
+        // Clear previous win text
         if (winText != null)
         {
             winText.text = "";
         }
 
-        // Play reel spinning sound
+        // Play reel sound
         if (reelAudioSource != null)
         {
             reelAudioSource.Play();
         }
 
-        // Start reels with slight delay for realistic effect
+        // Start reels
         reels[0].StartSpin();
+
         yield return new WaitForSeconds(0.08f);
 
         reels[1].StartSpin();
+
         yield return new WaitForSeconds(0.08f);
 
         reels[2].StartSpin();
 
-        // Wait until spinning finishes
+        // Wait for spinning
         yield return new WaitForSeconds(3.7f);
 
-        // Stop reel audio
+        // Stop reel sound
         if (reelAudioSource != null)
         {
             reelAudioSource.Stop();
         }
 
-        // Evaluate winning combination
+        // Check result
         CheckWin();
 
         isSpinning = false;
     }
-
-
-    /// Checks the center payline for matching symbols.
-    /// Rewards player if all three symbols match.
 
     void CheckWin()
     {
@@ -94,58 +92,80 @@ public class SlotMachineController : MonoBehaviour
         Sprite rightSymbol = reels[2].GetCenterSprite();
 
         // Safety check
-        if (leftSymbol == null || middleSymbol == null || rightSymbol == null)
-            return;
-
-        // Win condition: all three symbols match
-        if (leftSymbol == middleSymbol && middleSymbol == rightSymbol)
+        if (leftSymbol == null ||
+            middleSymbol == null ||
+            rightSymbol == null)
         {
-            int reward = CalculateReward(leftSymbol.name);
+            return;
+        }
 
-            // Add payout to player coins
+        // WIN CONDITION
+        if (leftSymbol == middleSymbol &&
+            middleSymbol == rightSymbol)
+        {
+            int reward =
+                CalculateReward(leftSymbol.name);
+
+            // Add winnings
             GameManager.Instance.AddCoins(reward);
 
-            // Display win message
+            // Show win text
             if (winText != null)
             {
-                winText.text = "YOU WIN: " + reward;
+                winText.text =
+                    "YOU WIN: " + reward;
             }
 
             // Play win animation
-            if (winAnimator != null)
+            if (winAnimator != null &&
+                winAnimator.gameObject.activeInHierarchy)
             {
-                winAnimator.Play("WinPop");
+                winAnimator.Play("WinPop", 0, 0f);
             }
 
             // Play win sound
             if (winAudioSource != null)
             {
+                winAudioSource.Stop();
                 winAudioSource.Play();
+            }
+
+            // Show UI effects
+            if (UIManager.Instance != null)
+            {
+                UIManager.Instance.ShowWin();
+            }
+        }
+        else
+        {
+            // Show retry panel if player lost all coins
+            if (GameManager.Instance.IsOutOfCoins())
+            {
+                UIManager.Instance.ShowRetryPanel();
             }
         }
     }
 
-
-    /// Returns payout amount based on symbol type.
-
+    // Reward calculation based on current bet
     int CalculateReward(string symbolName)
     {
+        int bet = GameManager.Instance.currentBet;
+
         if (symbolName.Contains("7"))
-            return 1000;
+            return bet * 50;
 
         if (symbolName.Contains("BAR"))
-            return 500;
+            return bet * 25;
 
         if (symbolName.Contains("Cherry"))
-            return 300;
+            return bet * 15;
 
         if (symbolName.Contains("Lemon"))
-            return 200;
+            return bet * 10;
 
         if (symbolName.Contains("WILD"))
-            return 1500;
+            return bet * 75;
 
-        // Default reward
-        return 100;
+        return bet * 5;
     }
 }

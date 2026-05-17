@@ -177,6 +177,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -206,9 +219,9 @@ TextureImporter:
       name: art_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 694
-        width: 549
+        x: 63
+        y: 695
+        width: 512
         height: 319
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -352,6 +365,28 @@ TextureImporter:
       bones: []
       spriteID: 15e335812264d3a30800000000000000
       internalID: 4196587540030111313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: art_2
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 751
+        width: 38
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab9c6c413abe4844f92db50a1414e56f
+      internalID: -4965996818678411964
       vertices: []
       indices: 
       edges: []
